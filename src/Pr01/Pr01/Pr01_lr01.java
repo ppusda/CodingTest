@@ -1,4 +1,4 @@
-package Pr01;
+package Pr01.Pr01;
 
 import java.util.Scanner;
 
