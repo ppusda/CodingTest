@@ -45,7 +45,6 @@ public class Pr03_lr01 {
 
         for (Integer x : pr.solution(num1, num2, numArr1, numArr2)) {
             System.out.print(x + " ");
-
         }
     }
 
