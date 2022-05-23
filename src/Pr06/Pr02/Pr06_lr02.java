@@ -7,9 +7,11 @@ public class Pr06_lr02 {
 
         for(int i = 0; i < number-1; i++){
             for(int j = 0; j < number-i-1; j ++){
-                int tmp = numArr[j];
-                numArr[j] = numArr[j+1];
-                numArr[j+1] = tmp;
+                if(numArr[j] > numArr[j+1]){
+                    int tmp = numArr[j];
+                    numArr[j] = numArr[j+1];
+                    numArr[j+1] = tmp;
+                }
             }
         }
 
