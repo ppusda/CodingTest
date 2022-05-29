@@ -11,30 +11,26 @@ public class Pr06_my09 {
         int lt = Arrays.stream(arr).max().getAsInt();
         int rt = Arrays.stream(arr).sum();
 
-        while(rt - lt > 0){
+        while(lt <= rt){
             int mid = (int)((lt + rt) / 2);
 
             int add = 0;
-            int cnt = 0;
-            for(int i = 0; i < arrLength;){
-                if(add < mid){
-                    add += arr[i++];
-                }else {
-                    i --;
+            int cnt = 1;
+            for(int x : arr){
+                if (add+x > mid){
                     cnt ++;
-                    add = 0;
+                    add = x;
+                }else{
+                    add += x;
                 }
-            }
-            if(add >= mid){
-                cnt ++;
             }
 
             if(cnt <= target){
+                answer = mid;
                 rt = mid - 1;
             }else {
                 lt = mid + 1;
             }
-            answer = mid;
         }
 
         return answer;
@@ -54,3 +50,8 @@ public class Pr06_my09 {
         System.out.println(pr.solution(arrLength, target, arr));
     }
 }
+
+/***
+ * 실패한 코드... 왜인지 모르겠다.
+ *
+ */
