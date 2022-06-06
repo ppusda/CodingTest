@@ -15,6 +15,8 @@ public class Pr07_st03 {
     }
 }
 /**
+ *  재귀를 이용한 팩토리얼 구현
+ *
  *  n * DFS(n-1)
  *  DFS(5) = 5 * DFS(4)
  *  DFS(4) = 4 * DFS(3)
