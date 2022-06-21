@@ -2,15 +2,16 @@ package Pr08.Pr02;
 
 import java.util.Scanner;
 
-public class Pr08_my02 {
+public class Pr08_lr02 {
     static int answer = 0;
     static int n, max;
     static int[] arr;
     public void DFS(int index, int sum){
+        if(sum > max){
+            return;
+        }
         if(index == n){
-            if(max > sum && sum > answer){
-                answer = sum;
-            }
+            answer = Math.max(answer, sum);
         }else{
             DFS(index+1, sum + arr[index]);
             DFS(index+1, sum);
@@ -18,7 +19,7 @@ public class Pr08_my02 {
     }
 
     public static void main(String[] args) {
-        Pr08_my02 pr = new Pr08_my02();
+        Pr08_lr02 pr = new Pr08_lr02();
         Scanner sc = new Scanner(System.in);
         max = sc.nextInt();
         n = sc.nextInt();
@@ -30,5 +31,3 @@ public class Pr08_my02 {
         System.out.println(answer);
     }
 }
-
-// 이전 커밋에 간과한 부분은 마지막 sum의 크기를 검사하지 않았다는 것이다.
