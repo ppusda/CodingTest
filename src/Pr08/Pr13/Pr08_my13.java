@@ -24,7 +24,7 @@ public class Pr08_my13 {
         for (int z = 0; z < dx.length; z++){
             int dix = k + dx[z];
             int diy = p + dy[z];
-            if(dix >= 0 && diy >= 0 && dix < 7 && diy < 7 && board[dix][diy] == 1){
+            if(dix >= 0 && diy >= 0 && dix < n && diy < n && board[dix][diy] == 1){
                 board[dix][diy] = 0;
                 DFS(dix, diy);
             }
