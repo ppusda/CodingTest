@@ -18,9 +18,11 @@ public class Pr2667 {
         for(int i = 0; i < 4; i++){
             int dix = a + dx[i];
             int diy = b + dy[i];
-            if(dix >= 0 && dix < n && diy >= 0 && diy < n && board[dix][diy] == 1 && check[dix][diy] == 1){
-                DFS(dix, diy);
-                count ++;
+            if(dix >= 0 && dix < n && diy >= 0 && diy < n){
+                if(board[dix][diy] == 1 && check[dix][diy] != 1){
+                    DFS(dix, diy);
+                    count ++;
+                }
             }
         }
     }
@@ -32,8 +34,9 @@ public class Pr2667 {
         board = new int[n][n];
         check = new int[n][n];
         for(int i = 0; i < n; i++){
+            String input = sc.next();
             for(int j = 0; j < n; j++){
-                board[i][j] = sc.nextInt();
+                board[i][j] = input.charAt(j)-'0';
             }
         }
 
@@ -41,7 +44,7 @@ public class Pr2667 {
 
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
-                if(board[i][j] == 1){
+                if(board[i][j] == 1 && check[i][j] != 1){
                     count = 1;
                     DFS(i, j);
                     arr.add(count);
