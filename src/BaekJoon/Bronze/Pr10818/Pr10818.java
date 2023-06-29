@@ -1,26 +1,25 @@
 package BaekJoon.Bronze.Pr10818;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Pr10818 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
 
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        int n = sc.nextInt();
-
-        ArrayList<Integer> numList = new ArrayList<>();
-
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0; i < n; i++){
-            numList.add(sc.nextInt());
+            int tmp = Integer.parseInt(st.nextToken());
+            min = Math.min(tmp, min);
+            max = Math.max(tmp, max);
         }
 
-        Collections.sort(numList);
-
-        System.out.print(numList.get(0) + " " + numList.get(n-1));
-
+        System.out.print(min + " " + max);
     }
+
 }
