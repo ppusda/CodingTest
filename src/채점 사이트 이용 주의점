@@ -1,3 +1,9 @@
 채점 이용시 체크 리스트
-    - package 경로를 지워주어야만 함.
-    - class 이름은 Main으로 맞춰주어야만 함.
+
+BaekJoon, Inflearn
+- package 경로를 지워주어야만 함.
+- class 이름은 Main으로 맞춰주어야만 함.
+
+Programmers
+- input 값은 solution 함수를 통해 들어오게 됨.
+- solution return 값으로 output 결과물을 내보내주면 됨.
