@@ -18,7 +18,6 @@ public class Pr42 {
                 water += (right-left-1) * (Math.min(height[left], height[right])-height[bottom]);
             }
             stack.push(right);
-            System.out.println(stack);
         }
 
         return water;
