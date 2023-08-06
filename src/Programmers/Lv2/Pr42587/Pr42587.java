@@ -1,4 +1,4 @@
-package Programmers.Pr42587;
+package Programmers.Lv2.Pr42587;
 
 import java.util.Collections;
 import java.util.PriorityQueue;

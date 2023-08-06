@@ -1,4 +1,4 @@
-package Programmers.Pr72410;
+package Programmers.Lv1.Pr72410;
 
 import java.util.Locale;
 

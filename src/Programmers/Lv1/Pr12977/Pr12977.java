@@ -1,4 +1,4 @@
-package Programmers.Pr12977;
+package Programmers.Lv1.Pr12977;
 
 public class Pr12977 {
 

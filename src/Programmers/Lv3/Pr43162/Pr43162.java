@@ -1,4 +1,4 @@
-package Programmers.Pr43162;
+package Programmers.Lv3.Pr43162;
 
 public class Pr43162 {
     public static int answer;

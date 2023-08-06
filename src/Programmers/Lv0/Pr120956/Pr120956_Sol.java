@@ -1,4 +1,4 @@
-package Programmers.Pr120956;
+package Programmers.Lv0.Pr120956;
 
 public class Pr120956_Sol {
     public static int solution(String[] babbling) {
