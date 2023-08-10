@@ -12,7 +12,7 @@ public class QueueExample {
         }
 
         System.out.println(queue);
-        System.out.println("가장 최상단 값(마지막으로 넣었던 값) : " + queue.peek());
+        System.out.println("가장 최상단 값(처음으로 넣었던 값) : " + queue.peek());
         queue.remove();
         System.out.println(queue);
 
