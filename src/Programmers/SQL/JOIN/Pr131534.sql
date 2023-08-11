@@ -1,0 +1,15 @@
+SELECT
+    YEAR(SALES_DATE) YEAR,
+    MONTH(SALES_DATE) MONTH,
+    COUNT(DISTINCT os.USER_ID) PUCHASED_USERS,
+    ROUND(COUNT(DISTINCT os.USER_ID) / (SELECT COUNT(*) FROM USER_INFO WHERE JOINED like "2021%"), 1) PUCHASED_RATIO
+FROM USER_INFO ui
+    JOIN ONLINE_SALE os ON ui.USER_ID = os.USER_ID
+WHERE JOINED like "2021%"
+GROUP BY YEAR, MONTH
+ORDER BY YEAR, MONTH;
+
+-- 여기서 팁은 아래 SQL문에 아무것도 잡히지 않는다는 점이다...
+-- SELECT * FROM ONLINE_SALE WHERE SALES_AMOUNT = 0;
+-- 0 인건 없다는 것은 무조건 산 기록만 남아있다는 뜻이 된다.
+-- https://school.programmers.co.kr/questions/51148
