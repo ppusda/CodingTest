@@ -22,4 +22,6 @@ public class Pr12933_Sol {
         Integer.toString(n).chars().sorted().forEach(c -> res = Character.valueOf((char)c) + res);
         return Integer.parseInt(res);
     }
- * // lambda를 이용하면 위와 같이 풀 수 있다...
+
+ // lambda를 이용하면 위와 같이 풀 수 있다...
+ */
