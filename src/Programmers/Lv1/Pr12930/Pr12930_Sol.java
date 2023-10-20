@@ -1,16 +1,21 @@
 package Programmers.Lv1.Pr12930;
 
 public class Pr12930_Sol {
-    public String solution(String s) {
+    public static String solution(String s) {
+        StringBuilder answer = new StringBuilder();
 
-        String answer = "";
-        int cnt = 0;
-        String[] array = s.split("");
+        int count = 0;
+        String[] array = s.toUpperCase().split("");
 
-        for(String ss : array) {
-            cnt = ss.contains(" ") ? 0 : cnt + 1;
-            answer += cnt%2 == 0 ? ss.toLowerCase() : ss.toUpperCase();
+        for(String letter : array) {
+            count = letter.equals(" ") ? 0 : count + 1;
+            answer.append(count%2 == 0 ? letter.toLowerCase() : letter);
         }
-        return answer;
+
+        return answer.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solution("try hello world"));
     }
 }
