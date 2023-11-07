@@ -52,8 +52,8 @@ public class Pr131705_Sol {
         System.out.println(solution(arr));
 
         long afterTime = System.currentTimeMillis();
-        long secDiffTime = (afterTime - beforeTime)/1000;
-        System.out.println("시간차이(m) : "+secDiffTime);
+        long secDiffTime = (afterTime - beforeTime);
+        System.out.println("시간차이(ms) : "+secDiffTime);
     }
 
 }
