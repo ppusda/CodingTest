@@ -1,0 +1,7 @@
+package Programmers.Lv0.Pr181873;
+
+public class Pr181873 {
+    public String solution(String my_string, String alp) {
+        return my_string.replaceAll(alp, alp.toUpperCase());
+    }
+}
