@@ -1,7 +1,7 @@
 package Test;
 
 public class test {
-    public int solution() {
+    public void solution() {
 
     }
 
