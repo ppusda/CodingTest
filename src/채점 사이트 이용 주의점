@@ -4,7 +4,8 @@ BaekJoon, Inflearn
 - package 경로를 지워주어야만 함.
 - class 이름은 Main으로 맞춰주어야만 함.
 
-Programmers, LeetCode,
+Programmers, LeetCode
 - input 값은 solution 함수를 통해 들어오게 됨.
 - solution return 값으로 output인 결과 값을 내보내주어야 함.
+- 특히 LeetCode는 채점을 연달아 진행하기 때문에, 전역변수를 초기화하지 않으면 테스트케이스를 실패하는 경우가 나올 수 있음.
 (프로그래머스 시험 때에는 IDE를 사용하지 못할 수도 있으니 자동완성 없이 코드를 작성해야함도 유의하자.)
