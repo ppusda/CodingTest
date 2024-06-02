@@ -1,4 +1,4 @@
-package LeetCode.Pr2336;
+package LeetCode.Medium.Pr2336;
 
 import java.util.PriorityQueue;
 

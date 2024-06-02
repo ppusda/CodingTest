@@ -1,4 +1,4 @@
-package LeetCode.Pr1302;
+package LeetCode.Medium.Pr1302;
 
 public class TreeNode {
     int val;

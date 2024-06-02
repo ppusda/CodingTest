@@ -1,5 +1,5 @@
 // LeetCode: 1302_Deepest-leaves-sum
-package LeetCode.Pr1302;
+package LeetCode.Medium.Pr1302;
 
 import java.util.LinkedList;
 import java.util.Queue;

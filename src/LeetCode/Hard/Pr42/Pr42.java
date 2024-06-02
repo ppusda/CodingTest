@@ -1,4 +1,4 @@
-package LeetCode.Pr42;
+package LeetCode.Hard.Pr42;
 
 import java.util.Stack;
 
