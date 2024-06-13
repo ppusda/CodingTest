@@ -1,4 +1,4 @@
-package Programmers.Lv2.Pr49189;
+package Programmers.Lv3.Pr49189;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
