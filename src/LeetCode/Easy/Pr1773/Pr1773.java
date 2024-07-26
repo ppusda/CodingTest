@@ -1,4 +1,4 @@
-package LeetCode.Easy;
+package LeetCode.Easy.Pr1773;
 
 import java.util.List;
 
