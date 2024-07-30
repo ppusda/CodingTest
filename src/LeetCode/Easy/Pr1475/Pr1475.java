@@ -21,4 +21,4 @@ public class Pr1475 {
         return answer;
     }
 }
-}
+
