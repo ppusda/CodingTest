@@ -12,7 +12,10 @@ public class Pr27 {
             }
         }
 
-        nums = numList.stream().mapToInt(i -> i).toArray();
+        for (int i = 0; i < numList.size(); i++) {
+            nums[i] = numList.get(i);
+        }
+
         return nums.length;
     }
 
