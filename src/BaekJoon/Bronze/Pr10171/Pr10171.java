@@ -1,4 +1,4 @@
-package BaekJoon.Bronze;
+package BaekJoon.Bronze.Pr10171;
 
 public class Pr10171 {
 
