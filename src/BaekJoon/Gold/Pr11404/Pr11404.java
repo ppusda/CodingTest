@@ -55,7 +55,8 @@ public class Pr11404 {
         for (int i = 1; i <= N; i++) { // 중간
             for (int j = 1; j <= N; j++) { // 처음
                 for (int k = 1; k <= N; k++) { // 끝
-                    if (j != k && graph[j][k] > graph[j][i] + graph[i][k]) {
+                    if (j == k) continue;
+                    if (graph[j][k] > graph[j][i] + graph[i][k]) {
                         graph[j][k] = graph[j][i] + graph[i][k];
                     }
                 }
