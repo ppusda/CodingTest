@@ -27,6 +27,7 @@ public class Pr1916 {
     private static int INF = 999999999;
     private static int N, M;
     private static ArrayList<Node>[] list;
+    private static int[][] graph;
     private static int[] dist;
 
     public static void main(String[] args) throws IOException {
@@ -37,11 +38,22 @@ public class Pr1916 {
         M = Integer.parseInt(br.readLine());
 
         list = new ArrayList[N+1];
+        graph = new int[N+1][N+1];
         dist = new int[N+1];
 
         for (int i = 1; i <= N; i++) {
             dist[i] = INF;
             list[i] = new ArrayList<>();
+        }
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                if (i != j) {
+                    graph[i][j] = INF;
+                } else {
+                    graph[i][j] = 0;
+                }
+            }
         }
 
         for (int i = 0; i < M; i ++) {
@@ -52,6 +64,7 @@ public class Pr1916 {
             int c = Integer.parseInt(st.nextToken());
 
             list[a].add(new Node(b, c));
+            graph[a][b] = Math.min(graph[a][b], c);
         }
 
         st = new StringTokenizer(br.readLine(), " ");
@@ -59,7 +72,8 @@ public class Pr1916 {
         int start = Integer.parseInt(st.nextToken());
         int end = Integer.parseInt(st.nextToken());
 
-        dijkstra(start);
+        // dijkstra(start);
+        dijkstraGraph(start);
 
         System.out.println(dist[end]);
     }
@@ -78,9 +92,42 @@ public class Pr1916 {
 
             visited[currentNum] = true;
             for (Node node : list[currentNum]) {
-                if (dist[node.num] > dist[currentNum] + node.weight) { // 현재 노드의 가중치 + 갈수 있는 방향의 가중치가 dist[]에 기록되어있는 해당 노드의 가중치 보다 작다면
+                if (dist[node.num] > dist[currentNum] + node.weight) { // dist에 기록되어 있는 인접 노드의 가중치 보다 현재 노드의 가중치 + 인접 노드의 가중치가 적다면
                     dist[node.num] = dist[currentNum] + node.weight; // 갱신
-                    pq.add(new Node(node.num, dist[node.num])); // 우선 순위 큐에 갱신되 노드를 추가
+                    pq.add(new Node(node.num, dist[node.num])); // 우선 순위 큐에 갱신 된 노드를 추가
+                }
+            }
+        }
+    }
+
+    private static void dijkstraGraph(int start) {
+        boolean[] visited = new boolean[N + 1];
+        dist[start] = 0;
+
+        for (int i = 1; i <= N; i++) {
+            dist[i] = graph[start][i]; // 시작 노드에서 각 노드까지의 초기 거리 설정
+        }
+
+        for (int i = 1; i <= N; i++) {
+            int currentNum = -1;
+            int minDist = INF;
+
+            // 방문하지 않은 노드 중 가장 거리가 짧은 노드 찾기
+            for (int j = 1; j <= N; j++) {
+                if (!visited[j] && dist[j] < minDist) {
+                    minDist = dist[j];
+                    currentNum = j;
+                }
+            }
+
+            if (currentNum == -1) break; // 더 이상 방문할 노드가 없으면 종료
+
+            visited[currentNum] = true;
+
+            // 현재 노드와 연결된 노드의 거리 업데이트
+            for (int j = 1; j <= N; j++) {
+                if (!visited[j] && graph[currentNum][j] != INF) {
+                    dist[j] = Math.min(dist[j], dist[currentNum] + graph[currentNum][j]);
                 }
             }
         }
