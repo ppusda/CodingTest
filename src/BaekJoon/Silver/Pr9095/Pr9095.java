@@ -26,5 +26,7 @@ public class Pr9095 {
             int n = Integer.parseInt(br.readLine());
             System.out.println(dp[n]);
         }
+
+        br.close();
     }
 }
