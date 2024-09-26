@@ -30,13 +30,10 @@ public class Pr1912 {
 
         /***
          * 		for (int i = 1; i < N; i++) { // Bottom - Up 방식
-         * 			// (이전 dp + 현재 arr값) 과 현재 arr값 중 큰 것을 dp에 저장
-         * 			dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
-         *
-         * 			// 최댓값 갱신
-         * 			max = Math.max(max, dp[i]);
+         * 			dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]); // 점화식 적용
+         * 			max = Math.max(max, dp[i]); // 최댓값 갱신
          *      }
-         */ // 연속 합 ... 얼핏보면 투포인터 같지만 dp가 이용된다.
+         */
 
         System.out.println(MAX);
     }
@@ -44,7 +41,6 @@ public class Pr1912 {
     private static int dynamic(int index) {
         if (dp[index] == null) {
             dp[index] = Math.max(dynamic(index-1) + array[index], array[index]); // 연속된 수의 합이 자기 자신 보다 더 크다면 dp[]에 기록
-
             MAX = Math.max(MAX, dp[index]); // 그 중 큰 값이 있었다면 MAX에 저장
         }
 
