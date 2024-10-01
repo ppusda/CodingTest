@@ -72,7 +72,7 @@ public class Pr1005 {
             int node = queue.poll();
 
             for (Integer i : list.get(node)) {
-                    result[i] = Math.max(result[i], result[node] + weight[i]); // 이전 까지의 가중치 + 현재 가중치
+                result[i] = Math.max(result[i], result[node] + weight[i]); // 이전 까지의 가중치 + 현재 가중치
                 count[i]--;
 
                 if (count[i] == 0) {
