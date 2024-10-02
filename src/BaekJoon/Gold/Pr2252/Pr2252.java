@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Pr2252 {
@@ -14,7 +15,10 @@ public class Pr2252 {
     private static List<List<Integer>> list;
     private static StringBuffer answer;
     private static int N;
-    private static int[] count;
+    private static int[] indegree;
+
+    private static boolean[] visited;
+    private static Stack<Integer> stack;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +27,7 @@ public class Pr2252 {
         N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        count = new int[N+1];
+        indegree = new int[N+1];
         list = new ArrayList<>();
         answer = new StringBuffer();
 
@@ -38,21 +42,25 @@ public class Pr2252 {
             int B = Integer.parseInt(st.nextToken());
 
             list.get(A).add(B);
-            count[B]++; // 해당 노드로의 방향이 있는 경우에는 다른 노드에서의 길이 있는 경우이기 때문에 탐색하도록 count를 증가
-            // ex) 1 3 이라면, 1이 3보다 앞에 있어야 함, 이는 3으로 향하는 간선이 두 개라는 뜻
+            indegree[B]++; // 해당 노드로의 방향이 있는 경우에는 다른 노드에서의 길이 있는 경우이기 때문에 탐색하도록 진입차수 증가
+            // ex) 1 3 이라면, 1이 3보다 앞에 있어야 함, 이는 1에서 3으로 향하는 간선이 있다는 뜻
         }
 
         //위상 정렬
-        topologicalSort();
+        //topologicalSort();
+        topologicalSort_DFS();
 
+        while(!stack.isEmpty()) {
+            answer.append(stack.pop()).append(' ');
+        }
         System.out.println(answer);
     }
 
     private static void topologicalSort(){
         Queue<Integer> queue = new LinkedList<>();
 
-        for (int i = 1; i<=N; i++) {
-            if(count[i] == 0) { // 해당 노드로의 방향이 더 이상 없을 경우에 큐에 추가
+        for (int i = N; i >= 1; i--) {
+            if(indegree[i] == 0) { // 해당 노드로의 방향이 더 이상 없을 경우에 큐에 추가
                 queue.offer(i); // 해당 노드를 이용했다는 개념으로 큐에 추가한다고 생각하면 됨
             }
         }
@@ -61,15 +69,15 @@ public class Pr2252 {
         for (int i = 0; i < N; i++) {
             if (!queue.isEmpty()) {
                 int node = queue.poll();
-                answer.append(node).append(" "); // 방향이 더 이상 없는 경우, 노드를 거쳤음을 표기하기 위해 StringBuffer에 추가
+                answer.append(node).append(" "); // 간선이 더 이상 없는 경우, 순서가 정해진 것이기에, StringBuffer에 추가
 
                 for (int j = 0; j < list.get(node).size(); j++) { // 인접리스트 탐색
                     int index = list.get(node).get(j);
-                    count[index]--; // 해당 노드에서 갈 수 있는 방향의 count 감소 (간선 사용)
+                    indegree[index]--; // 해당 노드에서 갈 수 있는 방향의 진입차수 감소 (= 간선 사용)
 
-                    if (count[index] == 0) { // 간선을 타고 이동했을 때, 만약 더 이상 해당 노드로 접근할 타 노드가 없을 경우
+                    if (indegree[index] == 0) { // 간선을 타고 이동했을 때, 만약 더 이상 해당 노드로 접근할 타 노드가 없을 경우
                         if (list.get(index).isEmpty()) {
-                            answer.append(index).append(" "); // 방향이 더 이상 없는 경우, 노드를 거쳤음을 표기하기 위해 StringBuffer에 추가
+                            answer.append(index).append(" "); // 간선이 더 이상 없는 경우, 노드를 거쳤음을 표기하기 위해 StringBuffer에 추가
                             continue;
                         }
                         queue.offer(list.get(node).get(j)); // 해당 노드를 완료 했음 처리하기 위해 큐에 추가
@@ -77,7 +85,25 @@ public class Pr2252 {
                 }
             }
         }
+    }
 
+    private static void topologicalSort_DFS() {
+        visited = new boolean[N + 1];
+        stack = new Stack<>();
+
+        for (int n = 1; n <= N; n++) {
+            if(visited[n]) continue;
+            dfs(n);
+        }
+    }
+
+    private static void dfs(int node) {
+        visited[node] = true;
+        for(int next : list.get(node)) {
+            if(visited[next]) continue;
+            dfs(next);
+        }
+        stack.add(node);
     }
 }
 /***
@@ -99,5 +125,5 @@ public class Pr2252 {
  *  백준 테스트케이스 2번의 답은 4 2 3 1이라고 써있다.
  *  이는 "답이 여러 가지인 경우에는 아무거나 출력한다." 라는 전제가 깔려있으며,
  *  3 4 1 2 나 4 2 3 1 둘 다 4가 2앞에 있고, 3이 1 앞에 있음을 만족하기 때문에 상관 없는 것이다. (단순 출력단의 차이인 것이다.)
- *  실제로 위 조건문을 추가하면 3 4 1 2로 출력되며 이 또한 정답임을 볼 수 있다.
+ *  실제로 큐에 넣는 순서를 바꾸고, 위 조건문을 추가하면 4 2 3 1로 출력되며 이 또한 정답임을 볼 수 있다.
  */
