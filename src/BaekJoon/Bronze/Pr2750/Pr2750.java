@@ -1,4 +1,4 @@
-package BaekJoon.Silver.Pr2750;
+package BaekJoon.Bronze.Pr2750;
 
 import java.io.BufferedReader;
 import java.io.IOException;
